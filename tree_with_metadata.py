@@ -24,11 +24,11 @@ def parse_metadata(metadata_path):
     return metadata
 
 
-def add_metadata_to_tree(tree, metadata):
+def add_metadata_to_tree(tree, metadata, align):
     for s in metadata:
         nodes = tree.search_nodes(name=s)
         for node in nodes:
-            if args.align_labels:
+            if align:
                 id_face = ete3.TextFace(s + '\t\t\t\t')
                 node.add_face(id_face, column=0, position="aligned")
                 column_shift = 1
@@ -49,7 +49,7 @@ def main(args):
     style = ete3.TreeStyle()
     if args.align_labels:
         style.show_leaf_name = False
-    add_metadata_to_tree(tree, metadata)
+    add_metadata_to_tree(tree, metadata, args.align_labels)
     tree.render(args.output, tree_style=style)
 
 if __name__ == '__main__':
