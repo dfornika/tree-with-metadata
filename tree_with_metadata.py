@@ -2,7 +2,6 @@
 
 import argparse
 import os
-os.environ['QT_QPA_PLATFORM']='offscreen'
 
 import ete3
 
